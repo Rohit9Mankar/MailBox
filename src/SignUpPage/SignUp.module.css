@@ -1,7 +1,9 @@
 .contain{
-    margin-top:10rem;
+    position: absolute;
+    top:6rem;
     margin-left:45%;
     margin-right:10%;
+    z-index: 100;
     width: 50%;
   
   }

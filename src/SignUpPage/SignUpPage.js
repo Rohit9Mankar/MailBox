@@ -108,7 +108,8 @@ const SignUpForm = () => {
 
   }
   return (
-    <section className={classes.contain}>
+ 
+         <section className={classes.contain}>
       
    
       <Form className={classes.auth} onSubmit={submitHandler}>
@@ -168,6 +169,8 @@ const SignUpForm = () => {
 
           </button>
     </section>
+    
+   
   );
 };
 
