@@ -3,11 +3,14 @@ import classes from './SignUp.module.css';
 import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import { AuthActions } from '../store/AuthSlice';
+import '../App.css';
+import { useHistory } from 'react-router-dom';
 
 const SignUpForm = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const history=useHistory();
   const dispatch=useDispatch();
 
 
@@ -45,8 +48,8 @@ const SignUpForm = () => {
           if (res.ok) {
             const data = await res.json();
             console.log(data);
-            dispatch(AuthActions.login(data.idToken));
-            
+            dispatch(AuthActions.login({token:data.idToken,email:data.email}));
+            history.replace('/main');
            
           }
           else {
@@ -108,8 +111,8 @@ const SignUpForm = () => {
 
   }
   return (
- 
-         <section className={classes.contain}>
+ <div className='App'>
+<section className={classes.contain}>
       
    
       <Form className={classes.auth} onSubmit={submitHandler}>
@@ -169,6 +172,8 @@ const SignUpForm = () => {
 
           </button>
     </section>
+ </div>
+         
     
    
   );
