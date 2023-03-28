@@ -1,16 +1,21 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import FormLabel from 'react-bootstrap/esm/FormLabel';
 import Form from 'react-bootstrap/Form';
 import { Editor } from 'react-draft-wysiwyg';
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Button from 'react-bootstrap/Button';
 
 const Compose = () => {
+    const [editorState, setEditorState] = useState('');
 
+    const onEditorStateChange = (event) => {
+        setEditorState(event);
+        console.log(editorState.blocks[0].text)
+    };
 
     const EmailInputRef = useRef();
     const SubjectInputRef = useRef();
-    const ContentInputRef = useRef();
 
     const sendMessageHandler = async (event) => {
         try {
@@ -19,7 +24,10 @@ const Compose = () => {
             const SenderMail = localStorage.getItem('email');
             const recieverMail = EmailInputRef.current.value;
             const subject = SubjectInputRef.current.value;
-            const mailContent = ContentInputRef.current.value;
+            const contentState =editorState.blocks[0].text
+
+            console.log(contentState)
+
 
             const recieverMailUrl = recieverMail.split('').filter((item) => {
                 return item !== '@' && item !== '.'
@@ -29,7 +37,7 @@ const Compose = () => {
                 sender: SenderMail,
                 reciver: recieverMail,
                 sub: subject,
-                content: mailContent
+                content: contentState
             };
 
             const [response1, response2] = await Promise.all([
@@ -56,9 +64,9 @@ const Compose = () => {
             }
             EmailInputRef.current.value = '';
             SubjectInputRef.current.value = '';
-            ContentInputRef.current.value = '';
+            
 
-        } 
+        }
         catch (error) {
             alert('error');
         }
@@ -93,11 +101,12 @@ const Compose = () => {
 
                 <FormLabel>ComposeMail</FormLabel>
                 <Editor
-                    ref={ContentInputRef}
-                    id='floatingComposeCustom'
+                    
+                    
                     toolbarClassName="toolbarClassName"
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
+                    onChange={onEditorStateChange}
                 />
                 <Button type='submit'>Send</Button>
             </form>
