@@ -17,7 +17,12 @@ const inboxSlice = createSlice({
         changeViewMail(state, action) {
             state.viewMail = action.payload;
         },
-
+       deleteMail(state,action){
+        const index = state.inboxArray.findIndex((item) => {
+            return item.id === action.payload;
+        });
+        state.inboxArray.slice(index,1);
+       },
         changeBlueDot(state, action) {
             const index = state.inboxArray.findIndex((item) => {
                 return item.id === action.payload;
@@ -30,7 +35,7 @@ const inboxSlice = createSlice({
         assignUnreadCount(state, action) {
             state.unreadCount = action.payload;
         },
-        
+
         changeUnreadCount(state) {
             state.unreadCount--;
         }
