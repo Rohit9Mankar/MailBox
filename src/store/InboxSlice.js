@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialInboxState = {
-    inboxArray: []
+    inboxArray: [],
+    viewMail: {},
+    unreadCount: 0
 };
 
 const inboxSlice = createSlice({
@@ -10,6 +12,27 @@ const inboxSlice = createSlice({
     reducers: {
         addToInBox(state, action) {
             state.inboxArray = action.payload;
+        },
+
+        changeViewMail(state, action) {
+            state.viewMail = action.payload;
+        },
+
+        changeBlueDot(state, action) {
+            const index = state.inboxArray.findIndex((item) => {
+                return item.id === action.payload;
+            });
+            const indexItem = state.inboxArray[index];
+            const updatedItem = { ...indexItem, read: true };
+            state.inboxArray[index] = updatedItem;
+        },
+
+        assignUnreadCount(state, action) {
+            state.unreadCount = action.payload;
+        },
+        
+        changeUnreadCount(state) {
+            state.unreadCount--;
         }
     }
 

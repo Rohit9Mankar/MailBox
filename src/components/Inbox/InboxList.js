@@ -18,6 +18,7 @@ const InboxList=()=>{
         return(
             <>
             {inboxItems}
+            
             </>
         )
 

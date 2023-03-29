@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Compose from './ComposeMail/ComposeMail';
 import Inbox from './components/Inbox/Inbox';
 import Navigation from './components/Navigaton';
+import InboxViewMail from './components/Inbox/InboxViewMail';
 
 
 function App() {
@@ -12,14 +13,18 @@ function App() {
       <Route path='/' exact>
         <SignUpForm />
       </Route>
-      <Route path='/main'>
+      <Route path='/main'exact>
         <Navigation />
       </Route>
-      <Route path='/compose'>
+      <Route path='/main/compose'>
         <Compose />
       </Route>
-      <Route path='/inbox'>
+      <Route path='/main/inbox'>
         <Inbox />
+        
+      </Route>
+      <Route path='/viewMail' exact>
+        <InboxViewMail />
       </Route>
 
 

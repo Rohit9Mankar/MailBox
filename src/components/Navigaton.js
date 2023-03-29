@@ -1,19 +1,22 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom"
 
 const Navigation = () => {
+    const unreadMailCount=useSelector(state => state.inbox.unreadCount);
+
     return (
         <nav>
             <ul>
                 <li>
                 <NavLink
-                    to="/inbox"
+                    to="/main/inbox"
                     >
-                    Inbox
+                    Inbox{unreadMailCount}
                 </NavLink>
                 </li>
                 <li>
                 <NavLink
-                 to="/compose"
+                 to="/main/compose"
                 >
                     Compose
                  </NavLink>

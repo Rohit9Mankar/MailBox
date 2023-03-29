@@ -11,7 +11,7 @@ const Compose = () => {
 
     const onEditorStateChange = (event) => {
         setEditorState(event);
-        console.log(editorState.blocks[0].text)
+    
     };
 
     const EmailInputRef = useRef();
@@ -37,7 +37,8 @@ const Compose = () => {
                 sender: SenderMail,
                 reciver: recieverMail,
                 sub: subject,
-                content: contentState
+                content: contentState,
+                read:false
             };
 
             const [response1, response2] = await Promise.all([

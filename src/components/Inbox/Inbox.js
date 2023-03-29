@@ -14,12 +14,17 @@ const Inbox = () => {
 
             if (response.ok) {
                 let loadedMails = [];
+                let unreadCount=0;
                 for (let key in data) {
+                    if(!data[key].read){
+                        unreadCount+=1;
+                    }
                     loadedMails.push({
                         id: key, ...data[key]
                     })
 
                 }
+                dispatch(InboxActions.assignUnreadCount(unreadCount));
                 dispatch(InboxActions.addToInBox(loadedMails));
             }
             else{
