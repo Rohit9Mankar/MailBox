@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import InboxList from "./InboxList";
 import { useDispatch } from "react-redux";
 import { InboxActions } from "../../store/InboxSlice";
+import Layout from "../Layout/Layout";
 
 const Inbox = () => {
     const dispatch = useDispatch();
@@ -14,10 +15,10 @@ const Inbox = () => {
 
             if (response.ok) {
                 let loadedMails = [];
-                let unreadCount=0;
+                let unreadCount = 0;
                 for (let key in data) {
-                    if(!data[key].read){
-                        unreadCount+=1;
+                    if (!data[key].read) {
+                        unreadCount += 1;
                     }
                     loadedMails.push({
                         id: key, ...data[key]
@@ -27,16 +28,21 @@ const Inbox = () => {
                 dispatch(InboxActions.assignUnreadCount(unreadCount));
                 dispatch(InboxActions.addToInBox(loadedMails));
             }
-            else{
+            else {
                 alert("something went wrong while loading mails");
             }
 
 
         }
         fetchRecievedMail();
-    }, [dispatch])
+    }, [dispatch]);
+
     return (
-        <InboxList />
+
+        <Layout>
+            <InboxList />
+        </Layout>
+
     )
 };
 export default Inbox;

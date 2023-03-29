@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { InboxActions } from "../../store/InboxSlice";
+import { uiActions } from "../../store/ui-Slice";
 import classes from './Inbox.module.css';
 
 
@@ -10,7 +11,7 @@ const InboxItem = (props) => {
 
     const emailClickHandler = (event) => {
         event.preventDefault();
-        dispatch(InboxActions.changeViewMail(props));
+        dispatch(uiActions.changeViewMail(props));
         history.replace('/viewMail');
     }
 

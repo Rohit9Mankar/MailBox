@@ -2,8 +2,8 @@ import SignUpForm from './SignUpPage/SignUpPage';
 import { Route, Switch } from 'react-router-dom';
 import Compose from './ComposeMail/ComposeMail';
 import Inbox from './components/Inbox/Inbox';
-import Navigation from './components/Navigaton';
 import InboxViewMail from './components/Inbox/InboxViewMail';
+import Sentbox from './components/SentBox/SentBox';
 
 
 function App() {
@@ -13,15 +13,14 @@ function App() {
       <Route path='/' exact>
         <SignUpForm />
       </Route>
-      <Route path='/main'exact>
-        <Navigation />
+      <Route path='/main' exact>
+        <Inbox />
       </Route>
-      <Route path='/main/compose'>
+      <Route path='/compose' exact>
         <Compose />
       </Route>
-      <Route path='/main/inbox'>
-        <Inbox />
-        
+      <Route path='/sentbox' exact>
+        <Sentbox />
       </Route>
       <Route path='/viewMail' exact>
         <InboxViewMail />

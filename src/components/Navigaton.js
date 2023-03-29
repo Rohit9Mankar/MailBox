@@ -9,19 +9,25 @@ const Navigation = () => {
             <ul>
                 <li>
                 <NavLink
-                    to="/main/inbox"
+                    to="/main"
                     >
                     Inbox{unreadMailCount}
                 </NavLink>
                 </li>
                 <li>
                 <NavLink
-                 to="/main/compose"
+                 to="/compose"
                 >
                     Compose
                  </NavLink>
                 </li>
-              
+                <li>
+                <NavLink
+                 to="/sentbox"
+                >
+                    SentBox
+                 </NavLink>
+                </li>
             </ul>
         </nav>
     )

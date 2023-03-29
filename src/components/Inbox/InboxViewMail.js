@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { InboxActions } from "../../store/InboxSlice";
 
+
 const InboxViewMail = () => {
-    const emailObj = useSelector(state => state.inbox.viewMail);
+    const emailObj = useSelector(state => state.ui.viewMail);
     const dispatch = useDispatch();
     const history = useHistory();
 

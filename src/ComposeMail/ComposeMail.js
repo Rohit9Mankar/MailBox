@@ -5,13 +5,14 @@ import { Editor } from 'react-draft-wysiwyg';
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Button from 'react-bootstrap/Button';
+import Layout from '../components/Layout/Layout';
 
 const Compose = () => {
     const [editorState, setEditorState] = useState('');
 
     const onEditorStateChange = (event) => {
         setEditorState(event);
-    
+
     };
 
     const EmailInputRef = useRef();
@@ -24,7 +25,7 @@ const Compose = () => {
             const SenderMail = localStorage.getItem('email');
             const recieverMail = EmailInputRef.current.value;
             const subject = SubjectInputRef.current.value;
-            const contentState =editorState.blocks[0].text
+            const contentState = editorState.blocks[0].text
 
             console.log(contentState)
 
@@ -38,7 +39,7 @@ const Compose = () => {
                 reciver: recieverMail,
                 sub: subject,
                 content: contentState,
-                read:false
+                read: false
             };
 
             const [response1, response2] = await Promise.all([
@@ -65,7 +66,7 @@ const Compose = () => {
             }
             EmailInputRef.current.value = '';
             SubjectInputRef.current.value = '';
-            
+
 
         }
         catch (error) {
@@ -75,49 +76,52 @@ const Compose = () => {
     }
 
     return (
-        <section>
-            <form onSubmit={sendMessageHandler}>
-                <Form.Floating className="mb-3">
-                    <Form.Control
-                        id="floatingEmailCustom"
-                        type="email"
-                        placeholder="name@example.com"
-                        ref={EmailInputRef}
-                        required
+        <Layout>
+            <section>
+                <form onSubmit={sendMessageHandler}>
+                    <Form.Floating className="mb-3">
+                        <Form.Control
+                            id="floatingEmailCustom"
+                            type="email"
+                            placeholder="name@example.com"
+                            ref={EmailInputRef}
+                            required
+                        />
+                        <label htmlFor="floatingEmailCustom">To</label>
+                    </Form.Floating>
+
+                    <Form.Floating className="mb-3">
+                        <Form.Control
+                            id="floatingSubjectCustom"
+                            type="text"
+                            placeholder="name@example.com"
+                            ref={SubjectInputRef}
+                            required
+                        />
+                        <label htmlFor="floatingSubjectCustom">Subject</label>
+                    </Form.Floating>
+
+
+                    <FormLabel>ComposeMail</FormLabel>
+                    <Editor
+
+
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        onChange={onEditorStateChange}
                     />
-                    <label htmlFor="floatingEmailCustom">To</label>
-                </Form.Floating>
-
-                <Form.Floating className="mb-3">
-                    <Form.Control
-                        id="floatingSubjectCustom"
-                        type="text"
-                        placeholder="name@example.com"
-                        ref={SubjectInputRef}
-                        required
-                    />
-                    <label htmlFor="floatingSubjectCustom">Subject</label>
-                </Form.Floating>
-
-
-                <FormLabel>ComposeMail</FormLabel>
-                <Editor
-                    
-                    
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClassName"
-                    onChange={onEditorStateChange}
-                />
-                <Button type='submit'>Send</Button>
-            </form>
+                    <Button type='submit'>Send</Button>
+                </form>
 
 
 
 
 
 
-        </section>
+            </section>
+        </Layout>
+
 
     )
 }
