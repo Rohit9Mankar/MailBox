@@ -34,7 +34,12 @@ const Inbox = () => {
 
 
         }
+    const interval=setInterval(()=>{
         fetchRecievedMail();
+    },2000) ;
+
+    return ()=> {clearInterval(interval)};
+
     }, [dispatch]);
 
     return (

@@ -66,6 +66,7 @@ const Compose = () => {
             }
             EmailInputRef.current.value = '';
             SubjectInputRef.current.value = '';
+            setEditorState("");
 
 
         }
