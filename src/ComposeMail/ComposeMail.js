@@ -1,13 +1,16 @@
 import { useRef, useState } from 'react';
+
 import FormLabel from 'react-bootstrap/esm/FormLabel';
 import Form from 'react-bootstrap/Form';
 import { Editor } from 'react-draft-wysiwyg';
+import classes from './Compose.module.css';
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Button from 'react-bootstrap/Button';
 import Layout from '../components/Layout/Layout';
 
 const Compose = () => {
+    
     const [editorState, setEditorState] = useState('');
 
     const onEditorStateChange = (event) => {
@@ -21,7 +24,7 @@ const Compose = () => {
     const sendMessageHandler = async (event) => {
         try {
             event.preventDefault();
-
+        const registered=localStorage.getItem('registered');
             const SenderMail = localStorage.getItem('email');
             const recieverMail = EmailInputRef.current.value;
             const subject = SubjectInputRef.current.value;
@@ -35,7 +38,7 @@ const Compose = () => {
             }).join("");
 
             const mailObject = {
-                sender: SenderMail,
+                sender: registered,
                 reciver: recieverMail,
                 sub: subject,
                 content: contentState,
@@ -78,7 +81,7 @@ const Compose = () => {
 
     return (
         <Layout>
-            <section>
+            <section className={classes.compose}>
                 <form onSubmit={sendMessageHandler}>
                     <Form.Floating className="mb-3">
                         <Form.Control
@@ -102,17 +105,22 @@ const Compose = () => {
                         <label htmlFor="floatingSubjectCustom">Subject</label>
                     </Form.Floating>
 
+                    <div className={classes.compose_editor}>
+                        <FormLabel>Compose</FormLabel>
+                        <Editor
 
-                    <FormLabel>ComposeMail</FormLabel>
-                    <Editor
 
+                            toolbarClassName="toolbarClassName"
+                            wrapperClassName="wrapperClassName"
+                            editorClassName="editorClassName"
+                            onChange={onEditorStateChange}
+                        />
+                        <div className={classes.compose_actions}>
+                        <Button type='submit'>Send</Button>
+                        </div>
+                        
+                    </div>
 
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                        onChange={onEditorStateChange}
-                    />
-                    <Button type='submit'>Send</Button>
                 </form>
 
 

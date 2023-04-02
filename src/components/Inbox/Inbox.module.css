@@ -1,5 +1,5 @@
 .dot::before {
-    display: flex;
+    
     content: "";
     display: inline-block;
     width: 10px;
@@ -7,9 +7,58 @@
     margin-right: 5px;
     border-radius: 50%;
     background-color: blue;
+    
+  }
+.inbox_Item{
+  
+  display: flex;
+  justify-content:space-between;
+  width:97%;
+  color: white;
+  
+  margin-top: 0.2rem;
+  border-radius: 4px;
+  padding: 0.5rem 0.5rem;
+  background: gray;
+  border: 1px solid black;
+
+}
+.inbox_Item button{
+  
+    padding: 0.1rem 1rem;
+    background: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+  
+}
+
+  .noDot::before{
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: rgb(241, 241, 243);
+
   }
 
-  .noDot{
+  .view_Mail{
+    width:60%;
+    padding: 1rem;
+   margin-top: 1rem;
     display: flex;
-
+    flex-direction: column;
+    border:1px solid black;
+    background: gray;
+    color : white;
+    text-align: left;
+  }
+  .view_Mail button{
+    width:30%;
+    border-radius: 4px;
+    background-color: red;
+    margin-bottom: 1rem;
+    
   }

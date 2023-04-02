@@ -10,6 +10,7 @@ const InboxList=()=>{
           key={item.id}
           sender={item.sender}
           sub={item.sub}
+          read={item.read}
           content={item.content}
           />
 

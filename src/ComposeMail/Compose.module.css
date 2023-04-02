@@ -1,0 +1,22 @@
+.compose{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.compose label{
+    font-weight: bold;
+}
+.compose_editor{
+    border: 1px solid rgb(209, 205, 205);
+    border-radius: 7px;
+    padding: 0.5rem;
+    height:fit-content;
+}
+
+.compose_editor:hover{
+    box-shadow: 0px 5px 10px rgba(95, 147, 231, 0.5);
+  
+}
+.compose_editor button{
+float: inline-end;
+}

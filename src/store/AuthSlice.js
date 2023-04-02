@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialAuthState={
     token:localStorage.getItem("token"),
-    isLoggedIn: false
+    isLoggedIn: false,
+  
 };
 
 const authSlice=createSlice({
@@ -11,6 +12,7 @@ const authSlice=createSlice({
     reducers:{
         login(state,action){
             state.isLoggedIn=true;
+            localStorage.setItem("registered",action.payload.email)
             localStorage.setItem("token",action.payload.token);
             let newEmail=action.payload.email.split('').filter((item)=>{
                 return item!=='@' && item!=='.'
@@ -23,6 +25,7 @@ const authSlice=createSlice({
             localStorage.clear();
             state.token=null;
             state.isLoggedIn=false;
+           
         }
     }
 

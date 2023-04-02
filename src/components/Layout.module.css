@@ -1,0 +1,26 @@
+.navigation{
+    background: rgb(215, 203, 203);
+  border: 3px solid rgb(117, 6, 6);
+  border-radius: 7px;
+height: 95vh;
+color:rgb(222, 26, 26);
+}
+.navigation a{
+    text-decoration:none;
+    font-size: 1.3rem;
+    color: var(--color-primary-400);
+}
+
+.navigation li{
+padding:0.6rem 1rem;
+list-style: none;
+}
+
+.navigation a:hover,
+.navigation a:active 
+{
+  color: var(--color-primary-800);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
